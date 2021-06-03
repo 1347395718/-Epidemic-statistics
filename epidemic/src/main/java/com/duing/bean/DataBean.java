@@ -1,34 +1,29 @@
 package com.duing.bean;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@TableName("epidemic")
+public class DataBean implements Serializable {
 
-public class DataBean {
 
+    private static final long serialVersionUID = -2769844064744081860L;
 
-
+    private long id;
     private String area;
     private int confirm;
-    private int nowConfirm;
+    @TableField("newConfirm")
+    private int newConfirm;
     private int dead;
-    private boolean showRate;
     private int heal;
 
-    @Override
-    public String toString() {
-        return "DataBean{" +
-                "area='" + area + '\'' +
-                ", confirm=" + confirm +
-                ", nowConfirm=" + nowConfirm +
-                ", dead=" + dead +
-                ", showRate=" + showRate +
-                ", heal=" + heal +
-                '}';
-    }
 }

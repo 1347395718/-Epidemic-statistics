@@ -17,7 +17,8 @@ public class DataController {
     @GetMapping("/")
     public String list (Model model){
         model.addAttribute("dataList",dataService.list());
-        System.out.println("data:"+dataService.list());
+        System.out.println(dataService.list());
+
         return "list";
     }
 

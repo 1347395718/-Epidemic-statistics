@@ -20,7 +20,7 @@ public class GsonTest {
 
         DataServiceImp dataServiceImp = new DataServiceImp();
 
-        System.out.println(dataServiceImp.list().size());
+        System.out.println(dataServiceImp.list());
 //
 ////
 //        GsonTest.dataStr();
