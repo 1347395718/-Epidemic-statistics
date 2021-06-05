@@ -24,4 +24,6 @@ public class DataServiceImp extends ServiceImpl<DataMapper,DataBean> implements 
 
 
 
+
+
 }

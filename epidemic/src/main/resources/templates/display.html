@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{js/echarts.min.js}"></script>
+</head>
+<body>
+
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div id="main" align="center" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+            var dateStr = [[${dateList}]];
+            var confirmStr = [[${confirmList}]];
+            var suspectStr = [[${suspectList}]];
+            console.log("dateList:" + dateStr);
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '全国有确诊趋势',
+                },
+                legend:{
+                  data:['新增确诊','新增疑似']
+                },
+                xAxis: {
+                    type: 'category',
+                    data: dateStr
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name:'新增确诊',
+                        data: confirmStr,
+                        type: 'line'
+                    },
+                    {
+                        name:'新增疑似',
+                        data: suspectStr,
+                        type: 'line'
+                    }
+                ]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
+</body>
+</html>

@@ -3,6 +3,7 @@ package com.duing.handler;
 
 
 import com.duing.bean.DataBean;
+import com.duing.bean.GraphBean;
 import com.duing.service.imp.DataServiceImp;
 import com.duing.util.HttpURLConnectionUtil;
 import com.google.gson.Gson;
@@ -16,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -110,6 +112,31 @@ public class DataHandler {
 
 
     public static String url = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
+
+    public static List<GraphBean> urlGraphBean(){
+        String str = HttpURLConnectionUtil.doGet("https://api.inews.qq.com/newsqa/v1/query/inner/publish/modules/list?modules=chinaDayList,chinaDayAddList,nowConfirmStatis,provinceCompare");
+        Gson gson = new Gson();
+        Map strMap = gson.fromJson(str,Map.class);
+
+        System.out.println(strMap);
+
+        Map dataMap = (Map) strMap.get("data");
+
+        ArrayList dayAddList = (ArrayList) dataMap.get("chinaDayAddList");
+        ArrayList<GraphBean> graphBeans = new ArrayList<>();
+
+        for(int i = 0 ; i < dayAddList.size() ; i++){
+            Map map = (Map) dayAddList.get(i);
+            String dataStr = (String) map.get("date");
+            double confirm = (double) map.get("confirm");
+            double suspect = (double) map.get("suspect");
+
+            graphBeans.add(new GraphBean(0l,dataStr,(int)confirm,(int)suspect));
+
+        }
+
+        return graphBeans;
+    }
 
     public static ArrayList<DataBean> urlData(){
 

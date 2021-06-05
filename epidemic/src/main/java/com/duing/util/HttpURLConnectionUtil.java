@@ -1,5 +1,7 @@
 package com.duing.util;
 
+import com.duing.handler.DataHandler;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,6 +14,7 @@ public class HttpURLConnectionUtil {
     // 创建一个远程的连接对象  设置方法类型 GET
     // 设置相关参数    发送请求
     //   通过io接收数据后返回
+
 
     public static String doGet(String urlStr) {
         HttpURLConnection conn = null;
@@ -76,8 +79,9 @@ public class HttpURLConnectionUtil {
 
 
     public static void main(String[] args) {
-        String str = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
-        String result = doGet(str);
-        System.out.println(result);
+//        String str = "https://api.inews.qq.com/newsqa/v1/query/inner/publish/modules/list?modules=chinaDayList,chinaDayAddList,nowConfirmStatis,provinceCompare";
+//        String result = doGet(str);
+//        System.out.println(result);
+        System.out.println(DataHandler.urlGraphBean());
     }
 }
